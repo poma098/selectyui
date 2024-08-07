@@ -1,0 +1,82 @@
+{
+  "name": "selectyui",
+  "version": "0.1.44",
+  "private": false,
+  "description": "A React component library",
+  "main": "dist/esm/index.js",
+  "module": "dist/cjs/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "react",
+    "component",
+    "library"
+  ],
+  "author": "Zhuzhgov Roman",
+  "license": "MIT",
+  "scripts": {
+    "buildForNPM": "rollup -c",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "publish": "npm publish"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@rollup/plugin-terser": "^0.3.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/plugin-url": "^8.0.1",
+    "@svgr/rollup": "^6.5.1",
+    "@svgr/webpack": "^6.5.1",
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "5.33.0",
+    "babel-loader": "^8.3.0",
+    "eslint": "^8.32.0",
+    "eslint-config-standard-with-typescript": "^31.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.1",
+    "gh-pages": "^5.0.0",
+    "jest": "^27.5.1",
+    "rollup": "^3.10.1",
+    "rollup-plugin-dts": "^5.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^4.9.4",
+    "url-loader": "^4.1.1",
+    "web-vitals": "^4.2.2"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/mousetrap": "^1.6.15",
+    "framer-motion": "^11.3.21",
+    "jschardet": "^3.1.3",
+    "mousetrap": "^1.6.5",
+    "react": "^18.3.1",
+    "react-device-detect": "^2.2.3",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.26.0",
+    "react-scripts": "^5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "tslib": "^2.6.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

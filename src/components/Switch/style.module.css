@@ -1,0 +1,142 @@
+.switch {
+  position: relative;
+  height: 24px;
+  width: 40px;
+  border-radius: 600px;
+  background-color: #7e7e7e30;
+  user-select: none;
+  cursor: pointer;
+}
+.switch[data-size=xsmall] {
+  height: 16px;
+  width: 24px;
+}
+.switch[data-size=small] {
+  height: 20px;
+  width: 32px;
+}
+.switch[data-size=medium] {
+  height: 24px;
+  width: 40px;
+}
+.switch[data-size=large] {
+  height: 28px;
+  width: 48px;
+}
+.switch[data-size=xlarge] {
+  height: 32px;
+  width: 52px;
+}
+.switch[data-disabled=true] {
+  pointer-events: none;
+}
+.switcher {
+  position: absolute;
+  background-color: #fff;
+  left: 2px;
+  top: 2px;
+  height: calc(100% - 4px);
+  aspect-ratio: 1;
+  border-radius: 500px;
+  cursor: pointer;
+  cursor: pointer;
+  z-index: 2;
+}
+.switcher > .loader,
+.switcher > .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.switch[data-size=xsmall] .loader,
+.switch[data-size=xsmall] .icon {
+  font-size: 8px;
+}
+.switch[data-size=small] .loader,
+.switch[data-size=small] .icon {
+  font-size: 10px;
+}
+.switch[data-size=medium] .loader,
+.switch[data-size=medium] .icon {
+  font-size: 10px;
+}
+.switch[data-size=large] .loader,
+.switch[data-size=large] .icon {
+  font-size: 12px;
+}
+.switch[data-size=xlarge] .loader,
+.switch[data-size=xlarge] .icon {
+  font-size: 12px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.label {
+  font-weight: 400;
+  font-size: 15px;
+}
+.stickers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  z-index: 1;
+}
+.sticker1 {
+  height: 100%;
+  width: calc(50% - 2px);
+  transform: rotate(90deg);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: #7e7e7e90;
+}
+.sticker2 {
+  height: 100%;
+  width: calc(50% - 2px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: #7e7e7e30;
+  font-size: 10px;
+}
+
+.switch[data-size=xsmall] .sticker1 {
+  width: calc(50% - 0px);
+}
+
+.switch[data-size=xsmall] .sticker2 {
+  width: calc(50% - 0px);
+  font-size: 8px;
+  transform: translateX(-1px);
+}

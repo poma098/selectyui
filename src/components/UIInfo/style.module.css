@@ -1,0 +1,74 @@
+.uxInfo {
+  margin: 20px;
+  color: #333;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.infoSection {
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.infoValue {
+  font-size: 16px;
+  color: #444;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.fontsInfo {
+  overflow-x: auto;
+  /* Добавляет горизонтальную прокрутку для длинных таблиц */
+}
+
+.fontsTable {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fontsTable th,
+.fontsTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.fontsTable th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+}
+
+.fontsTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.fontsTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.separator {
+  background-color: #eaeaea;
+  height: 1px;
+  border: none;
+}

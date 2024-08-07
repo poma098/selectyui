@@ -1,0 +1,20 @@
+.container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.textWrapper {
+  display: block;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;  
+}
+
+.text {
+  display: inline-block;
+  white-space: nowrap;
+  white-space: pre;
+}

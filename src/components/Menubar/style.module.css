@@ -1,0 +1,101 @@
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #7d7d7d24;
+  border-radius: 8px;
+  padding: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: stretch;
+  gap: 3px;
+  z-index: 9;
+  position: relative;
+}
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.backgroundItem {
+  background-color: #7d7d7d24;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+}
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 7px;
+  gap: 7px;
+  cursor: pointer;   
+  border-radius: 5px;
+  user-select: none;
+  background-color: transparent;
+  text-align: left;
+  border: none;
+}
+.item[data-open-hover=true]:not(:hover) {
+  background-color: #7f7f7f33;
+}
+.item[data-active=false]:hover {
+  background-color: #7c7c7c12;
+}
+.item[data-active=false]:disabled {
+  background-color: transparent;
+}
+.item:active {
+  background-color: #7f7f7f33;
+}
+.item:disabled:active {
+  background-color: transparent;
+}
+.item:disabled {
+  cursor: default;
+}
+.item[data-not-list=true]:not(:disabled):active {
+  background-color: #7f7f7f33;
+}
+.icon {
+  flex-shrink: 0;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  text-align: center;
+}
+.data {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: center;
+  align-items: stretch;
+}
+.title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.description {
+  opacity: 0.75;
+  font-weight: 400;
+  font-size: 12px;
+}

@@ -1,10 +1,11 @@
-import { TooltipProps, TooltipPropsBase } from "@components/Tooltip/props.interface";
+import { TooltipProps, TooltipPropsBase } from "../../components/Tooltip/props.interface";
 
 export interface TooltipIconProps {
   tooltipProps: TooltipQuestionPropsProps;
   icon?: string | React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
+  initOpacity?: number;
 }
 
 type TooltipNewBaseProps = Omit<TooltipPropsBase, "observeElement">;

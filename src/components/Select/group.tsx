@@ -1,7 +1,8 @@
 import Style from "./style.module.css"
 import SelectItem from "./item";
 import { OptionGroupPropsWithChecked, OptionProps } from "./props.interface";
-import { hasIconInOptions } from ".";
+import { hasIconInOptions } from "./Select";
+import React from "react";
 
 function SelectGroup({
   options,

@@ -7,30 +7,35 @@ const dts = require("rollup-plugin-dts");
 const packageJson = require("./package.json");
 const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
+const json = require("@rollup/plugin-json");
 
 module.exports = [
   {
-    input: "src/index.tsx",
+    input: "src/index.ts",
     output: [
       {
-        file: packageJson.module,
+        file: packageJson.main,
         format: "cjs",
       },
       {
-        file: packageJson.main,
+        file: packageJson.module,
         format: "esm",
       },
     ],
-    external: ["react"],
+    external: ["react", "react-dom", "react-router-dom"],
     plugins: [
+      json(),
       resolve(),
       commonjs(),
       typescript({
         tsconfig: "./tsconfig.json",
+        sourceMap: true,
+        // exclude: ["**/*.stories.tsx"],
       }),
       postcss({
         extract: "index.css",
         modules: true,
+        // use: ["sass"],
         minimize: true,
       }),
       url(),
@@ -39,9 +44,9 @@ module.exports = [
     ],
   },
   {
-    input: "dist/esm/index.d.ts",
+    input: "dist/esm/types/index.d.ts",
     output: [{ file: packageJson.types, format: "esm" }],
-    external: [/\.(css)$/],
+    external: [/\.(css|scss)$/],
     plugins: [dts.default()],
   },
 ];

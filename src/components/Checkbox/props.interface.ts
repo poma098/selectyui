@@ -1,4 +1,4 @@
-import { TooltipPropsBase } from "@components/Tooltip/props.interface";
+import { TooltipPropsBase } from "../../components/Tooltip/props.interface";
 
 export interface CheckboxProps {
   checked: boolean;
@@ -52,4 +52,4 @@ export type TooltipCheckboxProps =
   | TooltipNewPropsBody
   | TooltipNewPropsChildren;
 
-export type SwitchSize = "xsmall" | "small" | "medium" | "large" | "xlarge";
+// export type SwitchSize = "xsmall" | "small" | "medium" | "large" | "xlarge";

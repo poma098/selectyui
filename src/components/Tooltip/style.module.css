@@ -19,6 +19,7 @@
   background-color: #fff;
   border-radius: inherit;
   gap: 10px;
+  text-align: left;
   box-shadow: 0 2.07544px 2.21381px #2e3c5005,
               0 4.98758px 5.32008px rgba(46, 60, 80, .028),
               0 16.7522px 17.869px rgba(46, 60, 80, .042);

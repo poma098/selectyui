@@ -9,7 +9,8 @@ import DropDownMenuList from "./list";
 import { useShortcuts } from "../../context/UIContext";
 import { ShortcutObject } from "../../types/shortcut.interface";
 import { definitionCoords } from "utils/definitionCoords";
-import ScrollingText from "../../components/ScrollingText";
+import { ScrollingText } from "../../components/ScrollingText";
+import React from "react";
 
 function DropDownMenuItem({
   item,

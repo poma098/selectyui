@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Shortcut } from "@type/shortcut.interface";
+import { Shortcut } from "../types/shortcut.interface";
 
 const useKeyboardShortcuts = (shortcuts: Shortcut[]) => {
   useEffect(() => {

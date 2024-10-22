@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 10px;
+  user-select: none;
+}
+.container, .container * {
+  box-sizing: border-box;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.title {
+  font-weight: 700;
+}
+.btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: 5px;
+}
+.btns > button {
+  flex-shrink: 0;
+}
+.months {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.monthsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 10px;
+}
+.prev {}
+.next {}

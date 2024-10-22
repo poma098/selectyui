@@ -1,4 +1,4 @@
-import { TooltipPropsBase } from "@components/Tooltip/props.interface";
+import { TooltipPropsBase } from "../../components/Tooltip/props.interface";
 import { HexColor } from "utils/color/props.interface";
 
 export interface SwitchProps {

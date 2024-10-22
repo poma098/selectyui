@@ -1,6 +1,6 @@
-import { Theme } from '@type/theme.type';
-import { Fonts } from '@type/fonts.interface';
-import { Themes } from "@type/themes.interface";
+import { Theme } from "../types/theme.type";
+import { Fonts } from '../types/fonts.interface';
+import { Themes } from "../types/themes.interface";
 import { Lang, Langs } from './langs.interface';
 import { Shortcut, ShortcutKey, ShortcutObject } from './shortcut.interface';
 
@@ -70,6 +70,14 @@ export interface UIContextProps {
   shortcuts: ShortcutObject[];
 
   getShortcutByKey: (key: ShortcutKey) => ShortcutObject | undefined;
+
+  altKey: boolean;
+  ctrlKey: boolean;
+  metaKey: boolean;
+  shiftKey: boolean;
+  leftMouse: boolean;
+  rightMouse: boolean;
+  centerMouse: boolean;
 }
 
 /**

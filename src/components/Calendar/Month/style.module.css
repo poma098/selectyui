@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 2px;
+}
+.container[data-visible-week-numbers=false] {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.title {
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.header {
+  display: contents;
+}
+.day {
+  height: 100%;
+}
+.body {
+  display: contents;
+}
+
+.weekNumber {
+
+}
+.dayName {
+  text-transform: capitalize;
+  font-weight: 700;
+  padding: 5px 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.container,
+.container * {
+  box-sizing: border-box;
+}

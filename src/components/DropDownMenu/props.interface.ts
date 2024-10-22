@@ -1,7 +1,7 @@
 import { Variants } from "framer-motion";
 import React from "react";
-import { DefinitionCoords, DropDownMenuPosition } from "@type/definitionCoords.interface";
-import { ShortcutKey } from "@type/shortcut.interface";
+import { DefinitionCoords, DropDownMenuPosition } from "../../types/definitionCoords.interface";
+import { ShortcutKey } from "../../types/shortcut.interface";
 
 export interface DropDownMenuItemBase {
   label: string | React.ReactNode;
@@ -24,7 +24,7 @@ export interface DropDownMenuItemWithList extends DropDownMenuItemBase {
 }
 
 export interface DropDownMenuItemDevider {
-  devider: true;
+  devider: boolean;
   list?: never;
   callback?: never;
   icon?: never;

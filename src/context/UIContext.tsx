@@ -12,7 +12,7 @@ import {
 } from "../types/shortcut.interface";
 import Mousetrap from "mousetrap";
 
-import Shortcuts from "../components/Shortcuts";
+import { Shortcuts } from "../components/Shortcuts";
 
 const UIContext = createContext<UIContextProps>({
   theme: "automatic",
@@ -33,7 +33,14 @@ const UIContext = createContext<UIContextProps>({
   shortcuts: [],
   getShortcutByKey: () => {
     return undefined
-  }
+  },
+  altKey: false,
+  ctrlKey: false,
+  metaKey: false,
+  shiftKey: false,
+  leftMouse: false,
+  rightMouse: false,
+  centerMouse: false,
 });
 
 export const UIProvider: React.FC<UIProviderProps> = ({
@@ -62,6 +69,15 @@ export const UIProvider: React.FC<UIProviderProps> = ({
   const [fonts, setFonts] = useState<Fonts>(initialFonts);
   const [fontFamily, setFontFamily] = useState<string>(initialFontFamily);
 
+  const [activeCtrl, setActiveCtrl] = useState<boolean>(false);
+  const [activeShift, setActiveShift] = useState<boolean>(false);
+  const [activeAlt, setActiveAlt] = useState<boolean>(false);
+  const [activeMeta, setActiveMeta] = useState<boolean>(false);
+
+  const [activeLeftMouse, setActiveLeftMouse] = useState<boolean>(false);
+  const [activeRightMouse, setActiveRightMouse] = useState<boolean>(false);
+  const [activeCenterMouse, setActiveCenterMouse] = useState<boolean>(false);
+
   const [localization, setLocalization] =
     useState<keyof Langs>(initialLocalization);
   const [localizationFiles, setLocalizationFiles] = useState<Langs>(
@@ -75,7 +91,10 @@ export const UIProvider: React.FC<UIProviderProps> = ({
 
   const registerShortcut = (shortcut: Shortcut) => {
     let shortcutObject = shortcut as ShortcutObject;
-    shortcutObject.element = generateElementsShortcut(shortcutObject.key, shortcutObject);
+    shortcutObject.element = generateElementsShortcut(
+      shortcutObject.key,
+      shortcutObject
+    );
     setShortcuts((prev) => [...prev, shortcutObject]);
     Mousetrap.bind(
       shortcut.key,
@@ -88,6 +107,90 @@ export const UIProvider: React.FC<UIProviderProps> = ({
   const unregisterShortcut = (key: string | string[]) => {
     setShortcuts((prev) => prev.filter((shortcut) => shortcut.key !== key));
     Mousetrap.unbind(key);
+  };
+
+
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener('visibilitychange', handleBlur);
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener('visibilitychange', handleBlur);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  const handleMouseDown = (event: MouseEvent) => {
+    if (event.button === 0) {
+      setActiveLeftMouse(true);
+    }
+    if (event.button === 2) {
+      setActiveRightMouse(true);
+    }
+    if (event.button === 1) {
+      setActiveCenterMouse(true);
+    }
+  };
+
+  const handleMouseUp = (event: MouseEvent) => {
+    if (event.button === 0) {
+      setActiveLeftMouse(false);
+    }
+    if (event.button === 2) {
+      setActiveRightMouse(false);
+    }
+    if (event.button === 1) {
+      setActiveCenterMouse(false);
+    }
+  };
+  
+  // Потеря фокуса экрана
+  const handleBlur = () => {
+    setActiveCtrl(false);
+    setActiveShift(false);
+    setActiveAlt(false);
+    setActiveMeta(false);
+    setActiveLeftMouse(false);
+    setActiveRightMouse(false);
+    setActiveCenterMouse(false);
+  }
+
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === "Control") {
+      setActiveCtrl(false);
+    }
+    if (event.key === "Shift") {
+      setActiveShift(false);
+    }
+    if (event.key === "Alt") {
+      setActiveAlt(false);
+    }
+    if (event.key === "Meta") {
+      setActiveMeta(false);
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Control") {
+      setActiveCtrl(true);
+    }
+    if (event.key === "Shift") {
+      setActiveShift(true);
+    }
+    if (event.key === "Alt") {
+      setActiveAlt(true);
+    }
+    if (event.key === "Meta") {
+      setActiveMeta(true);
+    }
   };
 
   useEffect(() => {
@@ -166,11 +269,11 @@ export const UIProvider: React.FC<UIProviderProps> = ({
       style.textContent = `* { font-family: ${fontFamily}; } code, code *, kbd { font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace; }`;
       document.head.appendChild(style);
-    } 
+    }
 
     return () => {
       document.head.querySelector("[data-font]")?.remove();
-    }
+    };
   }, [fontFamily, fonts]);
 
   useEffect(() => {
@@ -181,7 +284,10 @@ export const UIProvider: React.FC<UIProviderProps> = ({
     return locale.object[key] || key;
   }
 
-  function generateElementsShortcut(key: ShortcutKey, shortcut: ShortcutObject): React.ReactElement {
+  function generateElementsShortcut(
+    key: ShortcutKey,
+    shortcut: ShortcutObject
+  ): React.ReactElement {
     return <Shortcuts shortcutsKey={key} shortcutActive={false} />;
   }
 
@@ -221,6 +327,13 @@ export const UIProvider: React.FC<UIProviderProps> = ({
         unregisterShortcut,
         shortcuts,
         getShortcutByKey,
+        altKey: activeAlt,
+        ctrlKey: activeCtrl,
+        metaKey: activeMeta,
+        shiftKey: activeShift,
+        leftMouse: activeLeftMouse,
+        rightMouse: activeRightMouse,
+        centerMouse: activeCenterMouse,
       }}
     >
       {children}
@@ -279,3 +392,9 @@ export const useUILocale = () => {
     getLocale,
   };
 };
+
+export const useUIKeys = () => {
+  const { altKey, ctrlKey, metaKey, shiftKey, leftMouse, rightMouse, centerMouse } = useContext(UIContext);
+  return { altKey, ctrlKey, metaKey, shiftKey, leftMouse, rightMouse, centerMouse };
+}
+

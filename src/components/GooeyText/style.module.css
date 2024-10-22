@@ -1,0 +1,24 @@
+.goo {
+  display: inline !important;
+  box-decoration-break: clone;
+  background-color: #303036;
+  padding: 0.5rem 0.8rem;
+  filter: url('#goo');
+  box-sizing: border-box;
+}
+.gooContainer {
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: inline !important;
+  background-color: transparent !important;
+  position: absolute !important;
+}
+.container {
+  box-sizing: border-box;
+  position: relative;
+  max-width: fit-content;
+}

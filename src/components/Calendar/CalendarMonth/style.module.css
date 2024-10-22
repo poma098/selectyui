@@ -1,0 +1,170 @@
+.container {
+  padding: 5px 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  gap: 5px;
+  border-radius: 5px;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.date {
+  text-align: center;
+  padding: 0px 5px;
+  width: fit-content;
+  border-radius: 3px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.container[data-is-range=false] {
+  opacity: 0.5;
+}
+.container[data-effect-click=true] {
+  cursor: pointer;
+}
+.container[data-effect-click=true]:active .date {
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
+.container[data-is-disabled=true] {
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+}
+
+.container[data-is-selected=true] {
+  box-shadow: 0 0 0 2px rgb(49, 138, 255) inset;
+}
+
+.container:hover {
+  background-color: #f0f0f0;
+  opacity: 1;
+}
+
+.selected {
+  position: absolute;
+  height: calc(100% + 2px);
+  width: calc(100% + 2px);
+  background-color: rgb(49, 138, 255, 0.05);
+  left: -1px;
+  top: -1px;
+  pointer-events: none;
+  border-radius: inherit;
+  border: 2px solid rgb(49, 138, 255);
+}
+
+.selected[data-has-left-neighbor=true] {
+  border-left-width: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.selected[data-has-right-neighbor=true] {
+  border-right-width: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.selected[data-has-left-neighbor=true][data-has-right-neighbor=true] {
+  border-radius: 0px;
+}
+
+.selected[data-has-bottom-neighbor=true] {
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.selected[data-has-top-neighbor=true] {
+  border-top-width: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.selectedLeftBottom {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  left: -1px;
+  bottom: -1px;
+  border: 1px solid rgb(49, 138, 255);
+}
+
+.selectedRightBottom {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid rgb(49, 138, 255);
+}
+
+.selectedLeftTop {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  left: -1px;
+  top: -1px;
+  border: 1px solid rgb(49, 138, 255);
+}
+
+.selectedRightTop {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  right: -1px;
+  top: -1px;
+  border: 1px solid rgb(49, 138, 255);
+}
+
+.holidays {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  min-height: 5px;
+}
+
+.holiday {
+  height: 5px;
+  width: 5px;
+  flex-shrink: 0;
+  border-radius: 500px;
+}
+
+.holidaysLoader {
+  height: 5px;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 500px;
+  background-color: rgba(132, 132, 132, 0.275);
+  min-height: 5px;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

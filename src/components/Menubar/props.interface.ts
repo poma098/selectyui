@@ -1,7 +1,7 @@
 import {
   DropDownMenuItem,
   DropDownMenuProps,
-} from "@components/DropDownMenu/props.interface";
+} from "../../components/DropDownMenu/props.interface";
 
 export type DropDownMenuPropsNotList = Omit<
   DropDownMenuProps,

@@ -1,12 +1,12 @@
 import {
   AlertButtonsTemplates,
   AlertTemplate,
-  ButtonPosition,
+  AlertButtonPosition,
   FlexJustifyContent,
 } from "./props.interface";
 
 export function alertPositionConvert(
-  position: ButtonPosition
+  position: AlertButtonPosition
 ): FlexJustifyContent {
   switch (position) {
     case "left":

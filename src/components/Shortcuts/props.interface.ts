@@ -1,4 +1,4 @@
-import { ShortcutKey, ShortcutObject } from "@type/shortcut.interface";
+import { ShortcutKey, ShortcutObject } from "../../types/shortcut.interface";
 
 export interface ShortcutsProps {
   shortcutsKey: ShortcutKey;

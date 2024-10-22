@@ -6,7 +6,8 @@ import {
   OptionPropsWithChecked,
 } from "./props.interface";
 import { useEffect, useState } from "react";
-import ScrollingText from "../../components/ScrollingText";
+import {ScrollingText} from "../../components/ScrollingText";
+import React from "react";
 
 function SelectOption({
   id,

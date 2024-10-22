@@ -1,7 +1,6 @@
 // App.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
-import router from "routes";
 import { UIProvider } from "./context/UIContext";
 
 // Импорт файлов шрифтов
@@ -45,8 +44,27 @@ import RU from "./assets/lang/ru.json";
 import EN from "./assets/lang/en.json";
 import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import { FaRegLightbulb, FaTrafficLight } from "react-icons/fa";
+import { Calendar } from "./components/Calendar";
+import { GooeyText } from "components/GooeyText";
+import { Button, ContainerBlur, LinearBlur } from "./index";
+import { Avatar } from "components/Avatar"
 
 function App() {
+
+  const [activeDate, setActiveDate] = useState<Date>(new Date());
+  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+
+  const [visibleEvents, setVisibleEvents] = useState<boolean>(true);
+  const [visibleHolidays, setVisibleHolidays] = useState<boolean>(true);
+
+  useEffect(() => {
+    console.log("update selected", selectedDates);
+  }, [selectedDates]);
+
+  useEffect(() => {
+    console.log("update calendar", activeDate);
+  }, [activeDate]);
+  
   return (
     <UIProvider
       initialTheme="automatic"
@@ -147,7 +165,169 @@ function App() {
         },
       }}
     >
-      <RouterProvider router={router} />
+      <Avatar path="./assets/images/"/>
+      {/* <GooeyText
+        textAlign="center"
+        // radius={10}
+        // paddingY={"5px"}
+        // paddingX={"10px"}
+        maxWidth={300}
+        // textColor="#fff"
+        backgroundColor="#534d7a"
+        style={{
+          fontSize: "16px",
+          fontWeight: 700,
+        }}
+      >
+        This is an example 1 of a simple headline or text with rounded corners
+        using a gooey SVG filter
+      </GooeyText> */}
+      {/* <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <Button
+          label="Сбросить выделение"
+          onClick={() => setSelectedDates([])}
+          disabled={selectedDates.length === 0}
+        />
+        <Button
+          label="Выделить даты"
+          onClick={() =>
+            setSelectedDates([new Date(2024, 1, 1), new Date(2024, 1, 2)])
+          }
+        />
+        <Button
+          label={visibleHolidays ? "Скрыть праздники" : "Показать праздники"}
+          onClick={() => setVisibleHolidays(!visibleHolidays)}
+        />
+        <Button
+          label={visibleEvents ? "Скрыть события" : "Показать события"}
+          onClick={() => setVisibleEvents(!visibleEvents)}
+        />
+      </div> */}
+      <Calendar
+        size="medium"
+        format="year"
+        setActiveDate={setActiveDate}
+        startWeek={1}
+        visibleWeekend={true}
+        visibleToday={true}
+        visiblePrevNext={true}
+        visibleWeekNumbers={true}
+        holidaysVisible={visibleHolidays}
+        visibleEvents={visibleEvents}
+        onChange={setSelectedDates}
+        selectedMode="mooving"
+        selected={true}
+        colums={4}
+        onMouseEnterItem={(value, item) => console.log("onMouseEnterItem", value, item)}
+        onMouseLeaveItem={(value, item) => console.log("onMouseLeaveItem", value, item)}
+        onClickItem={(value, item) => console.log("onClickItem", value, item)}
+        customItem={(value, item) => {
+          return (
+            <>
+              <div>{value.toISOString()}</div>
+              <div>{JSON.stringify(item)}</div>
+            </>
+          );
+        }}
+        value={selectedDates}
+        events={[
+          {
+            formula: {
+              startDate: new Date("2024-08-18T10:00:00Z"),
+              repeatInterval: "DAYS",
+              frequency: 8,
+            },
+            name: "Утренний кофе!",
+            durationDays: 4,
+            description: "Замечательный день, чтобы выпить кофе",
+            icon: "☕️",
+            color: "#c0392b", // Коричневый
+          },
+          {
+            formula: {
+              repeatInterval: "WEEKS",
+              frequency: 2,
+              specificDateTime: {
+                dayOfWeek: 5,
+              },
+            },
+            name: "Ретроспектива",
+            description: "Ретроспектива по предыдущим двум неделям",
+            icon: "🗞️",
+            color: "#28a745", // Зеленый
+          },
+          {
+            formula: {
+              repeatInterval: "WEEKS",
+              frequency: 1, // Повторяется каждую неделю
+              specificDateTime: {
+                dayOfWeek: 1,
+              },
+            },
+            name: "Планирование скрама",
+            description: "Планирование скрама на рабочую неделю",
+            icon: "📅",
+            color: "#007bff", // Синий
+          },
+          {
+            formula: {
+              repeatInterval: "WEEKS",
+              frequency: 1, // Повторяется каждую неделю
+              specificDateTime: {
+                dayOfWeek: 2,
+              },
+            },
+            durationDays: 4,
+            name: "Ежедневный скрам",
+            description: "Обсуждение задач и планирование ежедневного скрама",
+            icon: "📅",
+            color: "#00ffff", // Голубой
+          },
+          {
+            formula: {
+              repeatInterval: "YEARS",
+              frequency: 1,
+              specificDateTime: {
+                dayOfMonth: 22,
+                hours: 0,
+                minutes: 0,
+                month: 10,
+              },
+            },
+            name: "День Рождение Ромы!",
+            icon: "🎉",
+            color: "#ffd700", // Золотой
+          },
+          {
+            date: new Date(2024, 9, 4),
+            name: "День Рождение Миши!",
+            icon: "🎉",
+            color: "#fba700", // Золотой
+            durationDays: 1,
+          },
+        ]}
+        activeDate={activeDate}
+        // activeDate={new Date(2005, 1, 1)}
+        minDate={new Date(2009, 1, 10)}
+        maxDate={new Date(2025, 10, 19)}
+        style={{
+          width: "min-content",
+          minWidth: "591px",
+        }}
+      />
+      {/* <div>
+        <div>Выбранные даты:</div>
+        <div>
+          {selectedDates.map((d, i) => {
+            return (
+              <>
+                {i + 1}. {d.toISOString()}
+                <br />
+              </>
+            );
+          })}
+        </div>
+      </div> */}
     </UIProvider>
   );
 }

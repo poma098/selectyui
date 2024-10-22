@@ -1,5 +1,5 @@
 .button {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: center;

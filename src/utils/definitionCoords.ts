@@ -1,7 +1,7 @@
 import {
   DefinitionCoords,
   DropDownMenuPosition,
-} from "@type/definitionCoords.interface";
+} from "../types/definitionCoords.interface";
 
 export const PADDING_X = -2;
 export const PADDING_Y = -2;

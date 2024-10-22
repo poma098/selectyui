@@ -1,5 +1,5 @@
-import { ButtonProps } from "@components/Button/props.interface";
-import { DropDownMenuPosition } from "@type/definitionCoords.interface";
+import { ButtonProps } from "../../components/Button/props.interface";
+import { DropDownMenuPosition } from "../../types/definitionCoords.interface";
 import { HexColor } from "utils/color/props.interface";
 
 export interface TooltipPropsBase {
@@ -18,6 +18,7 @@ export interface TooltipPropsBase {
   triangeVisible?: boolean;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
+  delay?: number;
 }
 
 export interface TooltipPropsTitle extends TooltipPropsBase {

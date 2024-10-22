@@ -1,4 +1,4 @@
-import { HexColor } from "utils/color/props.interface";
+import { HexColor } from "../../utils/color/props.interface";
 
 // Основные свойства кнопки
 interface BaseButtonProps {

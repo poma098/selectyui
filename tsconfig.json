@@ -1,34 +1,26 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "allowJs": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
-    "declaration": true, // Убедитесь, что декларации включены
-    "declarationMap": true,
-    "outDir": "dist/esm", // Убедитесь, что вывод деклараций идет в эту папку
-    "jsx": "react-jsx",
-    "sourceMap": true,
-    "baseUrl": "src",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"],
-      "@type/*": ["types/*"],
-      "@assets/*": ["assets/*"],
-      "@context/*": ["context/*"],
-      "@views/*": ["views/*"]
-    }
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "types",
+    "sourceMap": false,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "jsx": "react",
+    "strictNullChecks": false
   },
   "include": ["src/**/*"]
 }

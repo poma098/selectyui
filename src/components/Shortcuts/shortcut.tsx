@@ -43,4 +43,4 @@ function Shortcut({ shortcutKey, active = false, size = "medium" }: ShortcutProp
   );
 }
 
-export default Shortcut;
+export { Shortcut };

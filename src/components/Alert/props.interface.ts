@@ -1,11 +1,11 @@
-import { ButtonProps } from "@components/Button/props.interface";
+import { ButtonProps } from "components/Button";
 import { HexColor } from "utils/color/props.interface";
 
 export interface AlertPropsBase {
   buttons?: ButtonProps[];
   style?: React.CSSProperties;
   className?: string;
-  buttonPosition?: ButtonPosition;
+  buttonPosition?: AlertButtonPosition;
   template?: AlertTemplate;
 }
 
@@ -51,7 +51,13 @@ export interface AlertButtonsTemplates {
   };
 }
 
-export type ButtonPosition = "center" | "left" | "right" | 'space-between' | 'space-around' | 'space-evenly';
+export type AlertButtonPosition =
+  | "center"
+  | "left"
+  | "right"
+  | "space-between"
+  | "space-around"
+  | "space-evenly";
 
 
 export type AlertProps = AlertPropsWithChildren | AlertPropsWithTemplateTitle | AlertPropsWithTemplateBody

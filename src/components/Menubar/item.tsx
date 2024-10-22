@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import { MenuBarItemProps } from "./props.interface";
 import Style from "./style.module.css";
-import DropDownMenu from "../../components/DropDownMenu";
+import { DropDownMenu } from "../../components/DropDownMenu";
 import { PADDING_Y } from "utils/definitionCoords";
+import React from "react";
 
 function ManubarItem({
   activeIndex,

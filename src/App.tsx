@@ -46,7 +46,7 @@ import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import { FaRegLightbulb, FaTrafficLight } from "react-icons/fa";
 import { Calendar } from "./components/Calendar";
 import { GooeyText } from "components/GooeyText";
-import { Button, ContainerBlur, LinearBlur } from "./index_";
+import { Button, ContainerBlur, LinearBlur } from ".";
 import { Avatar, Avatars } from "components/Avatar"
 
 import imagePhoto from "./assets/images/photo.webp";

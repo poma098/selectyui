@@ -23,3 +23,4 @@ export * from "./types/UIContext.interface";
 export * from "./utils"
 export * from "./components/Calendar";
 export * from "./components/GooeyText";
+export * from "./components/Avatar";

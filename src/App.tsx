@@ -46,8 +46,10 @@ import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import { FaRegLightbulb, FaTrafficLight } from "react-icons/fa";
 import { Calendar } from "./components/Calendar";
 import { GooeyText } from "components/GooeyText";
-import { Button, ContainerBlur, LinearBlur } from "./index";
-import { Avatar } from "components/Avatar"
+import { Button, ContainerBlur, LinearBlur } from "./index_";
+import { Avatar, Avatars } from "components/Avatar"
+
+import imagePhoto from "./assets/images/photo.webp";
 
 function App() {
 
@@ -165,7 +167,58 @@ function App() {
         },
       }}
     >
-      <Avatar path="./assets/images/"/>
+      <Avatars
+        size="m"
+        limit={4}
+        gap={-14}
+        style={{
+          marginTop: 100,
+          marginLeft: 100,
+        }}
+        paths={[
+          {
+            path: imagePhoto,
+            title: "Зайкина Анна Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Галина Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Алина Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Вероника Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Анастасия Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Альбина Романовна",
+            onClick: () => console.log("click"),
+          },
+          {
+            path: imagePhoto,
+            title: "Зайкина Диана Романовна",
+            onClick: () => console.log("click"),
+          },
+        ]}
+      />
+      <Avatar
+        path={imagePhoto}
+        title="Зайкина Анна Романовна"
+        size="m"
+        onClick={() => console.log("click")}
+      />
       {/* <GooeyText
         textAlign="center"
         // radius={10}
@@ -203,7 +256,7 @@ function App() {
           onClick={() => setVisibleEvents(!visibleEvents)}
         />
       </div> */}
-      <Calendar
+      {/* <Calendar
         size="medium"
         format="year"
         setActiveDate={setActiveDate}
@@ -221,14 +274,14 @@ function App() {
         onMouseEnterItem={(value, item) => console.log("onMouseEnterItem", value, item)}
         onMouseLeaveItem={(value, item) => console.log("onMouseLeaveItem", value, item)}
         onClickItem={(value, item) => console.log("onClickItem", value, item)}
-        customItem={(value, item) => {
-          return (
-            <>
-              <div>{value.toISOString()}</div>
-              <div>{JSON.stringify(item)}</div>
-            </>
-          );
-        }}
+        // customItem={(value, item) => {
+        //   return (
+        //     <>
+        //       <div>{value.toISOString()}</div>
+        //       <div>{JSON.stringify(item)}</div>
+        //     </>
+        //   );
+        // }}
         value={selectedDates}
         events={[
           {
@@ -314,7 +367,7 @@ function App() {
           width: "min-content",
           minWidth: "591px",
         }}
-      />
+      /> */}
       {/* <div>
         <div>Выбранные даты:</div>
         <div>

@@ -1,6 +1,60 @@
 .container {
-
+  height: 30px;
+  width: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 500px;
+  border: 2px solid rgb(255, 255, 255);
 }
-.wrapper {
-  
+.container[data-size="xs"] {
+  height: 18px;
+  width: 18px;
+}
+.container[data-size="s"] {
+  height: 24px;
+  width: 24px;
+}
+.container[data-size="m"] {
+  height: 30px;
+  width: 30px;
+}
+.container[data-size="l"] {
+  height: 36px;
+  width: 36px;
+}
+.container[data-size="xl"] {
+  height: 42px;
+  width: 42px;
+}
+.container_group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.more {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  backdrop-filter: blur(25px);
+}
+.tooltip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+.value {
+  font-weight: 600;
 }

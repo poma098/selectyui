@@ -11,6 +11,7 @@ const ContainerBlur = forwardRef<HTMLDivElement, ContainerBlurProps>(
       className,
       style,
       styleContent,
+      styleBlur,
       paddingY = 20,
       paddingX = 20,
       rotate = 180,
@@ -23,18 +24,18 @@ const ContainerBlur = forwardRef<HTMLDivElement, ContainerBlurProps>(
       <div
         className={Style.main}
         style={{
-          ...style,
           paddingTop: paddingY,
           paddingLeft: paddingX,
           paddingBottom: paddingY,
           paddingRight: paddingX,
           backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0), ${color})`,
+          ...style,
         }}
         ref={ref}
       >
         <LinearBlur
           color={color}
-          style={{ maxHeight: "fit-content", minHeight: "100px" }}
+          style={{ maxHeight: "fit-content", minHeight: "100px", ...styleBlur }}
           blur={blur}
           rotate={rotate}
         />

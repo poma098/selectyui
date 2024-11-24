@@ -28,7 +28,7 @@ const ContainerBlur = forwardRef<HTMLDivElement, ContainerBlurProps>(
           paddingLeft: paddingX,
           paddingBottom: paddingY,
           paddingRight: paddingX,
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0), ${color})`,
+          backgroundImage: `linear-gradient(${180 + rotate}deg, rgba(0, 0, 0, 0), ${color})`,
           ...style,
         }}
         ref={ref}

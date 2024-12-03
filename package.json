@@ -1,6 +1,6 @@
 {
   "name": "selectyui",
-  "version": "0.1.74",
+  "version": "0.1.73",
   "private": false,
   "description": "A React component library",
   "main": "dist/esm/index.js",

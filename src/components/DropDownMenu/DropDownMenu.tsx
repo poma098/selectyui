@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Style from "./style.module.css";
 import {
   DropDownMenuProps,
@@ -6,7 +6,6 @@ import {
 import DropDownMenuContainer from "./container";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { definitionCoords } from "utils/definitionCoords";
-import { debounce } from "utils/debounce";
 
 export const itemVariants: Variants = {
   initial: ([x, y]: [number, number]) => ({
@@ -154,7 +153,6 @@ function DropDownMenu({
   speedScrolling = 2000,
   style,
   className,
-  debounceValue = 150,
 }: DropDownMenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -189,23 +187,6 @@ function DropDownMenu({
     }
   };
 
-  const debouncedHandleLeave = useCallback(
-    debounce(() => {
-      setVisible && setVisible(false);
-    }, debounceValue),
-    [debounce]
-  );
-
-  const handleMouseEnter = useCallback(() => {
-    debouncedHandleLeave.cancel(); // Отмена debounce
-    onMouseEnter && onMouseEnter(); // Дополнительный пользовательский обработчик
-  }, [debouncedHandleLeave, onMouseEnter]);
-
-  const handleMouseLeave = useCallback(() => {
-    debouncedHandleLeave(); // Запуск debounce
-    onMouseLeave && onMouseLeave(); // Дополнительный пользовательский обработчик
-  }, [debouncedHandleLeave, onMouseLeave]);
-
   useEffect(() => {
     if (visible) {
       if (openCallback) {
@@ -228,8 +209,7 @@ function DropDownMenu({
         try {
           const { x, y } = definitionCoords(
             menuRef.current as HTMLElement,
-            (observeElement?.current as HTMLElement) ||
-              (observeElement?.current as HTMLButtonElement),
+            (observeElement?.current as HTMLElement || observeElement?.current as HTMLButtonElement),
             openPosition
           );
 
@@ -242,6 +222,10 @@ function DropDownMenu({
       }
     }
   }, [visible]);
+
+  const handleLeave = () => {
+    setVisible && setVisible(false);
+  };
 
   useEffect(() => {
     if (observeElement && observeElement.current) {
@@ -260,7 +244,7 @@ function DropDownMenu({
       if (observeElement && observeElement.current) {
         observeElement.current.addEventListener(
           "mouseleave",
-          debouncedHandleLeave as any
+          handleLeave as any
         );
       }
     }
@@ -269,11 +253,11 @@ function DropDownMenu({
       if (hiddenHover && observeElement && observeElement.current) {
         observeElement.current.removeEventListener(
           "mouseleave",
-          debouncedHandleLeave as any
+          handleLeave as any
         );
       }
     };
-  }, [hiddenHover, trigger, debouncedHandleLeave]);
+  }, [hiddenHover, trigger]);
 
   useEffect(() => {
     if (observeElement && observeElement.current) {
@@ -301,8 +285,8 @@ function DropDownMenu({
           custom={[_x, _y]}
           variants={itemVariants}
           ref={menuRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           style={{ ...style }}
         >
           <DropDownMenuContainer

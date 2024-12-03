@@ -60,7 +60,6 @@ type DropDownMenuPropsBase = {
   style?: React.CSSProperties;
   className?: string;
   callbackClickItem?: (item: DropDownMenuItem, index: number) => void;
-  debounceValue?: number;
 };
 
 export type FormatText = "none" | "trim" | "scrolling";

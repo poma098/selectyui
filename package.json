@@ -1,6 +1,6 @@
 {
   "name": "selectyui",
-  "version": "0.1.73",
+  "version": "0.1.86",
   "private": false,
   "description": "A React component library",
   "main": "dist/esm/index.js",
@@ -20,7 +20,7 @@
     "buildForNPM": "rollup -c",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "publish": "npm publish",
+    "publish": "rollup -c && npm publish",
     "test": "jest"
   },
   "devDependencies": {

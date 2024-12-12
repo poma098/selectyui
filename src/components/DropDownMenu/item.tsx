@@ -70,6 +70,7 @@ function DropDownMenuItem({
         data-disabled={item.disabled}
         data-opened={visibleList}
         data-has-icon={hasIcon}
+        data-active={item?.active}
         onClick={(e) => {
           handleClick(item, index, e);
         }}

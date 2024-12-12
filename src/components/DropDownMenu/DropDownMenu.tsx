@@ -191,16 +191,29 @@ function DropDownMenu({
     if (visible) {
       if (openCallback) {
         try {
-          const res = openCallback(
-            menuRef.current as HTMLElement,
-            (observeElement?.current as HTMLElement) ||
-              (observeElement?.current as HTMLButtonElement),
-            undefined
-          );
-          if (res) {
-            _setX(res.x || xStart);
-            _setY(res.y || yStart);
+          if (observeElement?.current) {
+            const res = openCallback(
+              menuRef.current as HTMLElement,
+              (observeElement?.current as HTMLElement) ||
+                (observeElement?.current as HTMLButtonElement),
+              undefined
+            );
+            if (res) {
+              _setX(res.x || xStart);
+              _setY(res.y || yStart);
+            }
+          } else {
+            const { x, y } = definitionCoords(
+              menuRef.current as HTMLElement,
+              (observeElement?.current as HTMLElement) ||
+                (observeElement?.current as HTMLButtonElement),
+              openPosition
+            );
+
+            _setX(x || xStart);
+            _setY(y || yStart);
           }
+            
         } catch (error) {
           _setX(xStart);
           _setY(yStart);

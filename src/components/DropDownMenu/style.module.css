@@ -44,23 +44,27 @@
   box-sizing: border-box;
   width: 100%;
 }
-.item[data-has-icon=false] {
+.item[data-active="true"] {
+  background-color: #7c7c7c08;
+  font-weight: 600;
+}
+.item[data-has-icon="false"] {
   grid-template-columns: auto 1fr;
 }
 .item:hover {
   background-color: #7c7c7c12;
 }
-.item[data-has-list=false]:active {
+.item[data-has-list="false"]:active {
   background-color: #7f7f7f33;
 }
-.item[data-opened=true] {
+.item[data-opened="true"] {
   background-color: #7c7c7c12;
 }
-.item[data-disabled=true] {
+.item[data-disabled="true"] {
   cursor: default;
   opacity: 0.6;
 }
-.item[data-disabled=true]:hover {
+.item[data-disabled="true"]:hover {
   background-color: transparent;
 }
 .icon {

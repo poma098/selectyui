@@ -15,12 +15,14 @@ export interface DropDownMenuItemWithCallback extends DropDownMenuItemBase {
   callback: (item: DropDownMenuItem, index: number) => void;
   list?: never; // Не может существовать, если есть callback
   shortcutKey?: ShortcutKey;
+  active?: boolean;
 }
 
 export interface DropDownMenuItemWithList extends DropDownMenuItemBase {
   callback?: never; // Не может существовать, если есть list
   list: DropDownMenuItem[];
   shortcutKey?: never;
+  active?: boolean;
 }
 
 export interface DropDownMenuItemDevider {
@@ -33,6 +35,7 @@ export interface DropDownMenuItemDevider {
   disabled?: never;
   hidden?: boolean;
   shortcutKey?: never;
+  active?: never;
 }
 
 export type DropDownMenuTrigger = "hover" | "click";
@@ -65,7 +68,7 @@ type DropDownMenuPropsBase = {
 export type FormatText = "none" | "trim" | "scrolling";
 
 export type DropDownMenuPropsWithCoordinates = DropDownMenuPropsBase & {
-  observeElement?: never;
+  observeElement?: React.RefObject<HTMLDivElement | HTMLButtonElement> | null;
   xStart: number;
   yStart: number;
   onMouseEnter?: () => void;

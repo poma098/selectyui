@@ -26,3 +26,4 @@ export * from "./components/GooeyText";
 export * from "./components/Avatar";
 export * from "./components/Spinner";
 export * from "./components/Stepper";
+export * from "./components/AmplitudeGraph";

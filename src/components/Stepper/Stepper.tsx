@@ -4,6 +4,7 @@ import cn from "classnames";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
+import { useUITheme } from "context/UIContext";
 
 const formatValue = (val: number, acc: number) => {
   const factor = Math.pow(10, acc);
@@ -62,6 +63,8 @@ function Stepper({
 }: PropsStepper) {
   const inputRef = useRef<HTMLDivElement | null>(null);
   const width = Math.min(Math.max(((value - min) / (max - min)) * 100, 0), 100);
+
+  const { realTheme } = useUITheme();
 
   const handlePlus = (e: React.MouseEvent<HTMLButtonElement>) => {
     handleChangeValue(true, e);
@@ -197,6 +200,7 @@ function Stepper({
                 opacity: disabled ? 0.85 : 1,
               }}
               style={{
+                backgroundColor: realTheme === "dark" ? "#767c9633" : "#fff",
                 ...barStyle,
               }}
             ></motion.div>
@@ -206,12 +210,14 @@ function Stepper({
       {footer && (
         <div className={Style.footer}>
           <div className={Style.footerValue}>
+            {unitPosition === "left" && unit}
             {formatter ? formatter(min) : formatValue(min, accuracy)}
-            {unit}
+            {unitPosition === "right" && unit}
           </div>
           <div className={Style.footerValue}>
+            {unitPosition === "left" && unit}
             {formatter ? formatter(max) : formatValue(max, accuracy)}
-            {unit}
+            {unitPosition === "right" && unit}
           </div>
         </div>
       )}

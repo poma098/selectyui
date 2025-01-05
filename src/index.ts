@@ -25,3 +25,4 @@ export * from "./components/Calendar";
 export * from "./components/GooeyText";
 export * from "./components/Avatar";
 export * from "./components/Spinner";
+export * from "./components/Stepper";

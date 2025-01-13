@@ -6,7 +6,7 @@ import Style from "./style.module.css";
 import { Tooltip } from "components/Tooltip";
 
 const Avatars = forwardRef<HTMLDivElement, AvatarsProps>(
-  ({ paths, size = "m", limit = 3, gap = 0, style }) => {
+  ({ paths, size = "m", limit = 3, gap = 0, style }, ref1) => {
 
     if (limit <= 0) {
       throw new Error("The limit must be greater than 0");

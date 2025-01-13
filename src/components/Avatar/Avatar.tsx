@@ -4,7 +4,7 @@ import Style from "./style.module.css"
 import { Tooltip } from "components/Tooltip";
 
 const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
-  ({ path, title, onClick = () => {}, size = "m", style }) => {
+  ({ path, title, onClick = () => {}, size = "m", style }, ref1) => {
     const ref = React.useRef<HTMLDivElement>(null);
     return (
       <>

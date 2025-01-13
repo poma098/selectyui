@@ -1,0 +1,112 @@
+.container {
+  gap: 7px;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+}
+.container[data-position="top"] {
+  flex-direction: column-reverse;
+  transform: translate(-50%, calc(-100% + 15px));
+  text-align: center;
+}
+.container[data-position="top"][data-has-icon="true"] {
+  transform: translate(-50%, calc(-100% + 15px));
+}
+.container[data-position="top"][data-has-icon="false"] {
+  transform: translate(-50%, calc(-100% - 7px));
+}
+.container[data-position="right"] {
+  flex-direction: row;
+}
+.container[data-position="right"][data-has-icon="true"] {
+  transform: translate(-15px, -50%);
+}
+.container[data-position="right"][data-has-icon="false"] {
+  transform: translate(7px, -50%);
+}
+.container[data-position="bottom"] {
+  flex-direction: column;
+  transform: translate(-50%, -15px);
+  text-align: center;
+}
+.container[data-position="bottom"][data-has-icon="true"] {
+  transform: translate(-50%, -15px);
+}
+.container[data-position="bottom"][data-has-icon="false"] {
+  transform: translate(-50%, 7px);
+}
+.container[data-position="left"] {
+  flex-direction: row-reverse;
+}
+.container[data-position="left"][data-has-icon="true"] {
+  transform: translate(calc(-100% + 15px), -50%);
+}
+.container[data-position="left"][data-has-icon="false"] {
+  transform: translate(calc(-100% - 7px), -50%);
+}
+.icon {
+  height: 30px;
+  width: 30px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #7c7c7c1a;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.label {
+  font-weight: 500;
+  flex-shrink: 0;
+  /* background-color: #7c7c7c1a; */
+  /* backdrop-filter: blur(25px); */
+  border-radius: 10px;
+  padding: 2px 7px;
+  font-size: 13px;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto;
+}
+.button {
+  background-color: #fff;
+  padding: 1px 3px;
+  font-weight: 700;
+  font-size: 10px;
+  border-radius: 3px;
+  color: #303036;
+  text-transform: uppercase;
+  line-height: 11px;
+}
+.label[data-selected="true"],
+.icon[data-selected="true"] {
+  animation: scaleIn 0.22s ease-in-out;
+}
+@keyframes scaleIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+  /* 100% {
+    transform: scale(1);
+  } */
+}

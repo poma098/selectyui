@@ -1,7 +1,7 @@
-import ItemRadialToolKit from "./Item";
+import ItemRadialToolKit from "../Item/Item";
 import Style from "./ItemsRadialToolKit.module.css";
-import { PropsItemsRadialToolKit } from "./props.interface";
-import ItemMoreRadialToolKit from "./More";
+import { PropsItemsRadialToolKit } from "../../props.interface";
+import ItemMoreRadialToolKit from "../Item/More";
 import React from "react";
 
 function ItemsRadialToolKit({

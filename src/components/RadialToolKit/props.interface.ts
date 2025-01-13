@@ -102,3 +102,92 @@ export interface RadialToolKitCoordinates {
   angle: number;
   position: ItemPosition;
 }
+
+export interface BoxShadowWrapperProps {
+  animation: RadialToolKitAnimation;
+  KShadow: number;
+}
+
+export interface InnerCircleProps {
+  innerSize: PropsCircleRadialToolKit["innerSize"];
+  outerSize: PropsCircleRadialToolKit["outerSize"];
+  borderWidth: PropsCircleRadialToolKit["borderWidth"];
+  color: HexColor;
+  animation: RadialToolKitAnimation;
+  circleVisibleIcon: boolean;
+  activeItem?: RadialToolKitItem;
+}
+
+export interface CanvasRendererProps {
+  outerSize: PropsCircleRadialToolKit["outerSize"];
+  colors: HexColor[];
+  rotationAngle: number;
+  animationDuration: number;
+  activeIndex: number;
+  triangleAngle: number;
+  magnetization: boolean;
+  animation: RadialToolKitAnimation;
+}
+
+export interface RadialToolKitAnimations {
+  radialToolKit: {
+    duration: RadialToolKitAnimationsTypes;
+  };
+  circle: {
+    visibleSection: RadialToolKitAnimationsTypes;
+    boxShadow: {
+      delay: RadialToolKitAnimationsTypes;
+      duration: RadialToolKitAnimationsTypes;
+    };
+    circle: {
+      delay: RadialToolKitAnimationsTypes;
+      duration: RadialToolKitAnimationsTypes;
+    };
+    overlay: {
+      delay: RadialToolKitAnimationsTypes;
+      duration: RadialToolKitAnimationsTypes;
+    };
+    icon: {
+      duration: RadialToolKitAnimationsTypes;
+    };
+  };
+  item: {
+    container: {
+      delay: (animation: RadialToolKitAnimation, index: number) => number;
+      duration: RadialToolKitAnimationsTypes;
+    };
+    icon: {
+      delay: (animation: RadialToolKitAnimation, index: number) => number;
+      duration: RadialToolKitAnimationsTypes;
+      color: {
+        duration: RadialToolKitAnimationsTypes;
+        delay: RadialToolKitAnimationsTypes;
+      };
+      borderColor: {
+        duration: RadialToolKitAnimationsTypes;
+        delay: RadialToolKitAnimationsTypes;
+      };
+      backgroundColor: {
+        duration: RadialToolKitAnimationsTypes;
+        delay: RadialToolKitAnimationsTypes;
+      };
+    };
+    label: {
+      delay: (animation: RadialToolKitAnimation, index: number) => number;
+      duration: RadialToolKitAnimationsTypes;
+      color: {
+        duration: RadialToolKitAnimationsTypes;
+        delay: RadialToolKitAnimationsTypes;
+      };
+      backgroundColor: {
+        duration: RadialToolKitAnimationsTypes;
+        delay: RadialToolKitAnimationsTypes;
+      };
+    };
+    button: {
+      duration: RadialToolKitAnimationsTypes;
+    }
+  };
+}
+
+export type RadialToolKitAnimationsTypes = Record<RadialToolKitAnimation, number>;

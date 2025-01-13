@@ -4,9 +4,11 @@ function drawGradientSector(
   rotation: number,
   colors: string[]
 ): void {
+  const devicePixelRatio = window.devicePixelRatio || 1;
   const canvas = ctx.canvas;
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
+  const centerX = canvas.width / (2 * devicePixelRatio);
+  const centerY = canvas.height / (2 * devicePixelRatio);
+
   const radius = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2)); // Радиус до края Canvas
 
   // Угол в радианах

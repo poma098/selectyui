@@ -1,21 +1,26 @@
+import { MdOutlineMoreHoriz } from "react-icons/md";
 import Style from "./ItemRadialToolKit.module.css";
-import { ItemPosition, PropsItemRadialToolKit } from "./props.interface";
-import calculateCircleCoordinatesInRange from "./utils/calculateCircleCoordinatesInRange";
+import { ItemPosition, PropsItemMoreRadialToolKit } from "../../props.interface";
+import calculateCircleCoordinatesInRange from "../../utils/calculateCircleCoordinatesInRange";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { debounce } from "lodash";
-import { useUITheme } from "context/UIContext";
 import React from "react";
+import { useUITheme } from "context/UIContext";
 import { hexToRgba, isDarkColor } from "utils";
+import SETTINGS_ANIMATIONS from "../../SETTINGS_ANIMATIONS";
+
 /**
  * Компонент ItemRadialToolKit
  * Отображает элемент в радиальной раскладке с заданной позицией и иконкой.
  */
-function ItemRadialToolKit({
+function ItemMoreRadialToolKit({
   index,
   size,
-  item,
+  items,
   length,
+  label = "More",
+  icon = <MdOutlineMoreHoriz />,
   visibleIcon,
   rotationAngle,
   triangleAngle,
@@ -23,8 +28,8 @@ function ItemRadialToolKit({
   color,
   boxShadow,
   animation,
-  selectedIndex
-}: PropsItemRadialToolKit) {
+  selectedIndex,
+}: PropsItemMoreRadialToolKit) {
   // Состояние для хранения координат элемента
   const [coords, setCoords] = useState<{
     x: number;
@@ -90,43 +95,27 @@ function ItemRadialToolKit({
       className={Style.container}
       data-position={coords.position}
       style={{ left: `${coords.x}px`, top: `${coords.y}px` }}
-      data-active={false}
+      data-active={true}
       data-index={index}
-      data-has-icon={!!item.icon && visibleIcon}
+      data-has-icon={!!icon && visibleIcon}
       initial={{
-        opacity: animation === "none" ? 1 : 0,
+        opacity: 0,
       }}
       animate={{
         opacity: 1,
       }}
       exit={{
-        opacity: animation === "none" ? 1 : 0,
+        opacity: 0,
       }}
       transition={{
-        delay:
-          (animation === "slow"
-            ? 0.15
-            : animation === "medium"
-            ? 0.1
-            : animation === "fast"
-            ? 0.05
-            : 0) *
-          (animation === "slow"
-            ? index + 1.2
-            : animation === "medium"
-            ? index + 0.85
-            : animation === "fast"
-            ? index + 0.5
-            : 0),
-        duration: animation === "none" ? 0 : undefined,
+        delay: SETTINGS_ANIMATIONS.item.container.delay(animation, index),
+        duration: SETTINGS_ANIMATIONS.item.container.duration[animation],
       }}
     >
       {/* Отображение иконки, если она передана */}
-      {item.icon && visibleIcon && (
+      {!!icon && visibleIcon && (
         <motion.div
-          data-selected={
-            selectedIndex === index && active && animation !== "none"
-          }
+          data-selected={selectedIndex === -1 && active && animation !== "none"}
           className={Style.icon}
           initial={{ scale: 0 }}
           animate={{
@@ -137,53 +126,36 @@ function ItemRadialToolKit({
           }}
           exit={{ scale: 0 }}
           transition={{
-            delay:
-              (animation === "slow"
-                ? 0.15
-                : animation === "medium"
-                ? 0.1
-                : animation === "fast"
-                ? 0.05
-                : 0) *
-              (animation === "slow"
-                ? index + 1.3
-                : animation === "medium"
-                ? index + 0.85
-                : animation === "fast"
-                ? index + 0.5
-                : 0),
-            duration: animation === "none" ? 0 : undefined,
+            delay: SETTINGS_ANIMATIONS.item.icon.delay(animation, index),
+            duration: SETTINGS_ANIMATIONS.item.icon.duration[animation],
             color: {
-              delay: 0,
-              duration: animation === "none" ? 0 : undefined,
+              delay: SETTINGS_ANIMATIONS.item.icon.color.delay[animation],
+              duration: SETTINGS_ANIMATIONS.item.icon.color.duration[animation],
             },
             borderColor: {
-              delay: 0,
-              duration: animation === "none" ? 0 : undefined,
+              delay: SETTINGS_ANIMATIONS.item.icon.borderColor.delay[animation],
+              duration: SETTINGS_ANIMATIONS.item.icon.borderColor.duration[animation]
             },
             backgroundColor: {
-              delay: 0,
-              duration: animation === "none" ? 0 : undefined,
+              delay: SETTINGS_ANIMATIONS.item.icon.backgroundColor.delay[animation],
+              duration: SETTINGS_ANIMATIONS.item.icon.backgroundColor.duration[animation],
             },
           }}
         >
-          {item.icon}
+          {icon}
         </motion.div>
       )}
 
       {/* Отображение подписи и кнопки */}
       <motion.div
+        className={Style.label}
         data-selected={
-          selectedIndex === index &&
-          (!item.icon || !visibleIcon) &&
+          selectedIndex === -1 &&
+          (!icon || !visibleIcon) &&
           active &&
           animation !== "none"
         }
-        className={Style.label}
-        initial={{
-          y: 10,
-          scale: 0,
-        }}
+        initial={{ y: 10, scale: 0 }}
         animate={{
           y: 0,
           scale: 1,
@@ -202,54 +174,22 @@ function ItemRadialToolKit({
         }}
         exit={{ y: 10, scale: 0 }}
         transition={{
-          duration: animation === "none" ? 0 : undefined,
-          delay:
-            (animation === "slow"
-              ? 0.15
-              : animation === "medium"
-              ? 0.1
-              : animation === "fast"
-              ? 0.05
-              : 0) *
-            (animation === "slow"
-              ? index + 1.3
-              : animation === "medium"
-              ? index + 0.85
-              : animation === "fast"
-              ? index + 0.5
-              : 0),
+          delay: SETTINGS_ANIMATIONS.item.label.delay(animation, index),
+          duration: SETTINGS_ANIMATIONS.item.label.duration[animation],
           color: {
-            delay: 0,
-            duration: animation === "none" ? 0 : undefined,
+            delay: SETTINGS_ANIMATIONS.item.label.color.delay[animation],
+            duration: SETTINGS_ANIMATIONS.item.label.color.duration[animation],
           },
           backgroundColor: {
-            delay: 0,
-            duration: animation === "none" ? 0 : undefined,
+            delay: SETTINGS_ANIMATIONS.item.label.backgroundColor.delay[animation],
+            duration: SETTINGS_ANIMATIONS.item.label.backgroundColor.duration[animation],
           },
         }}
       >
-        {item.label}
-        {item.button && (
-          <motion.div
-            className={Style.button}
-            transition={{
-              duration: animation === "none" ? 0 : undefined,
-            }}
-            animate={{
-              color: active ? color : undefined,
-              backgroundColor: active
-                ? isDarkColor(hexToRgba(color || "#000"))
-                  ? "#fff"
-                  : "#000"
-                : undefined,
-            }}
-          >
-            {item.button}
-          </motion.div>
-        )}
+        {label}
       </motion.div>
     </motion.div>
   );
 }
 
-export default ItemRadialToolKit;
+export default ItemMoreRadialToolKit;

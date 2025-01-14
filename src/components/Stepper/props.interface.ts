@@ -1,5 +1,5 @@
 export interface PropsStepper {
-  unit?: string;
+  unit?: string | React.ReactNode;
   step?: number;
   min?: number;
   max?: number;
@@ -18,7 +18,10 @@ export interface PropsStepper {
   barClassName?: string;
   formatter?: (value: number) => string;
   enableScalingWithAltShift?: boolean;
-  description?: string | React.ReactNode | ((value: number, unit?: string) => string | React.ReactNode);
+  description?:
+    | string
+    | React.ReactNode
+    | ((value: number, unit?: string | React.ReactNode) => string | React.ReactNode);
   radius?: number;
 }
 

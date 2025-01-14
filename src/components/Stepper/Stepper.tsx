@@ -57,7 +57,7 @@ function Stepper({
   disabled = false,
   description,
   size = "m",
-  radius,
+  radius = 6,
   bar = true,
   formatter,
   enableScalingWithAltShift = true,

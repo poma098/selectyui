@@ -16,7 +16,7 @@ function LinearBlur({
         ...style,
         backgroundImage: `linear-gradient(${
           rotate - 180
-        }deg, rgba(0, 0, 0, 0), ${color})`,
+        }deg, rgba(0, 0, 0, 0) 0%, ${color} 100%)`,
       }}
     >
       <div className={Style.wrapper}>
@@ -113,6 +113,14 @@ function LinearBlur({
           }}
         ></div>
       </div>
+      <div
+        className={Style.gradient}
+        style={{
+          backgroundImage: `linear-gradient(${
+            rotate - 180
+          }deg, rgba(0, 0, 0, 0) 0%, ${color} 98%)`,
+        }}
+      ></div>
     </div>
   );
 }

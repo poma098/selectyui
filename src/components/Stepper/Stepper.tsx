@@ -5,6 +5,7 @@ import { LuMinus, LuPlus } from "react-icons/lu";
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
 import { useUITheme } from "context/UIContext";
+import { RadialBlur } from "components/RadialBlur";
 
 const formatValue = (val: number, acc: number) => {
   const factor = Math.pow(10, acc);
@@ -202,6 +203,24 @@ function Stepper({
                 }}
               >
                 {formatter ? formatter(value) : formatValue(value, accuracy)}
+              </div>
+              <div
+                style={{
+                  height: "calc(100% + 10px)",
+                  width: "calc(100% + 10px)",
+                  left: "-5px",
+                  top: "-5px",
+                  position: "absolute",
+                }}
+                className={Style.blur}
+              >
+                <RadialBlur style={{
+                  height: "100%",
+                  width: "100%",
+                  left: "0px",
+                  top: "0px",
+                  position: "absolute",
+                }} />
               </div>
             </div>
             {description && (

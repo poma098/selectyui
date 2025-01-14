@@ -334,7 +334,7 @@ export const UIProvider: React.FC<UIProviderProps> = ({
         leftMouse: activeLeftMouse,
         rightMouse: activeRightMouse,
         centerMouse: activeCenterMouse,
-      }}
+      }} 
     >
       {children}
     </UIContext.Provider>

@@ -54,7 +54,9 @@ function Stepper({
   header,
   unitPosition = "left",
   disabled = false,
+  description,
   size = "m",
+  radius,
   bar = true,
   formatter,
   enableScalingWithAltShift = true,
@@ -141,6 +143,12 @@ function Stepper({
     }
   };
 
+  const RADIUS = {
+    content: radius,
+    bar: Math.max(radius - 2, 0),
+    button: Math.max(radius - 2, 0),
+  };
+
   return (
     <div
       className={cn(Style.container, className)}
@@ -148,38 +156,61 @@ function Stepper({
       data-size={size}
     >
       {header && <div className={Style.header}>{header}</div>}
-      <div className={Style.content} data-visible-bar={!!bar}>
-        <div className={Style.main}>
+      <div
+        className={Style.content}
+        data-visible-bar={!!bar}
+        style={{
+          borderRadius: RADIUS.content,
+        }}
+      >
+        <div
+          className={Style.main}
+          style={{
+            borderRadius: RADIUS.button,
+          }}
+        >
           <motion.button
             whileHover={{ scale: 1, opacity: 1, backgroundColor: "#767c9614" }}
             whileTap={{ scale: 0.9, opacity: 1, backgroundColor: "#767c9625" }}
             className={Style.button}
             onClick={handleMinus}
             disabled={value <= min || !onChange || disabled}
+            style={{
+              borderRadius: RADIUS.button,
+            }}
           >
             <LuMinus />
           </motion.button>
-          <div
-            className={Style.value}
-            style={{
-              flexDirection: unitPosition === "right" ? "row-reverse" : "row",
-            }}
-          >
-            <div className={Style.unit}>{unit}</div>
+          <div className={Style.body}>
             <div
-              className={Style.input}
-              contentEditable={!!onChange && !disabled}
-              ref={inputRef}
-              onInput={handleInputChange}
-              suppressContentEditableWarning={true}
-              onKeyDown={handlePressArrow}
+              className={Style.value}
               style={{
-                cursor: onChange && !disabled ? "text" : "default",
-                opacity: disabled ? 0.5 : 1,
+                flexDirection: unitPosition === "right" ? "row-reverse" : "row",
               }}
             >
-              {formatter ? formatter(value) : formatValue(value, accuracy)}
+              <div className={Style.unit}>{unit}</div>
+              <div
+                className={Style.input}
+                contentEditable={!!onChange && !disabled}
+                ref={inputRef}
+                onInput={handleInputChange}
+                suppressContentEditableWarning={true}
+                onKeyDown={handlePressArrow}
+                style={{
+                  cursor: onChange && !disabled ? "text" : "default",
+                  opacity: disabled ? 0.5 : 1,
+                }}
+              >
+                {formatter ? formatter(value) : formatValue(value, accuracy)}
+              </div>
             </div>
+            {description && (
+              <div className={Style.description}>
+                {description instanceof Function
+                  ? description(value, unit)
+                  : description}
+              </div>
+            )}
           </div>
           <motion.button
             whileHover={{ scale: 1, opacity: 1, backgroundColor: "#767c9614" }}
@@ -187,12 +218,20 @@ function Stepper({
             className={Style.button}
             onClick={handlePlus}
             disabled={value >= max || !onChange || disabled}
+            style={{
+              borderRadius: RADIUS.button,
+            }}
           >
             <LuPlus />
           </motion.button>
         </div>
         {bar && (
-          <div className={Style.barContainer}>
+          <div
+            className={Style.barContainer}
+            style={{
+              borderRadius: RADIUS.bar,
+            }}
+          >
             <motion.div
               className={cn(Style.bar, barClassName)}
               animate={{
@@ -201,6 +240,7 @@ function Stepper({
               }}
               style={{
                 backgroundColor: realTheme === "dark" ? "#767c9633" : "#fff",
+                borderRadius: RADIUS.bar,
                 ...barStyle,
               }}
             ></motion.div>

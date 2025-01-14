@@ -42,6 +42,10 @@ module.exports = [
       svgr({ icon: true }),
       terser(),
     ],
+    watch: {
+      include: "src/**",
+      clearScreen: false,
+    },
   },
   {
     input: "dist/esm/types/index.d.ts",

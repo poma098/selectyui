@@ -214,13 +214,15 @@ function Stepper({
                 }}
                 className={Style.blur}
               >
-                <RadialBlur style={{
-                  height: "100%",
-                  width: "100%",
-                  left: "0px",
-                  top: "0px",
-                  position: "absolute",
-                }} />
+                <RadialBlur
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    left: "0px",
+                    top: "0px",
+                    position: "absolute",
+                  }}
+                />
               </div>
             </div>
             {description && (
@@ -256,6 +258,9 @@ function Stepper({
               animate={{
                 width: `${width}%`,
                 opacity: disabled ? 0.85 : 1,
+              }}
+              initial={{
+                width: `0%`,
               }}
               style={{
                 backgroundColor: realTheme === "dark" ? "#767c9633" : "#fff",

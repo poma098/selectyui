@@ -107,7 +107,7 @@ const UIInfo = () => {
         <div className={styles.infoValue}>{locale.name}</div>
         <h3 className={styles.sectionTitle}>Localization code</h3>
         <div className={styles.infoValue}>{locale.code}</div>
-        <h3 className={styles.sectionTitle}>Localization falg</h3>
+        <h3 className={styles.sectionTitle}>Localization flag</h3>
         <div className={styles.infoValue}>{locale.flag}</div>
         <h3 className={styles.sectionTitle}>Localization object</h3>
         <div className={styles.infoValue}>{JSON.stringify(locale.object)}</div>

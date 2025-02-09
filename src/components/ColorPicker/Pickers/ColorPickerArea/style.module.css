@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+  width: fit-content;
+}
+
+.pickers {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.containerValue {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-right: 2px;
+}
+.alphaChange {
+  width: 87px;
+  max-width: 87px;
+  min-width: 87px;
+}
+.alphaChange *[data-visible-bar=false] {
+  border-width: 1px !important;
+  border-color: #7d7d7d24 !important;
+  padding: 1px !important;
+}

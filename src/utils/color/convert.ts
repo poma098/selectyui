@@ -21,10 +21,30 @@ import {
   OklabString,
 } from "./props.interface";
 
+// FIXME: Hwb, Lch, Oklch, Lab, Oklab - Они работают не корректно, надо проверить и написать тесты для них
+
+/**
+ * Converts a hexadecimal color string to an RGBA color object.
+ * 
+ * @param {HexColor} hexString - The hexadecimal color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ */
 export function hexStringToRgbaColor(hexString: HexColor): RgbaColor {
   return hexToRgba(hexString);
 }
 
+
+/**
+ * Converts an RGB color string to an RGBA color object.
+ *
+ * The input string should be in the format `rgb(r, g, b)`, where `r`, `g`, and `b` 
+ * are integers representing the red, green, and blue components of the color, respectively.
+ *
+ * @param {RgbString} rgbString - The RGB color string to convert.
+ * @returns {RgbaColor} The RGBA color object with `a` set to 1.
+ * 
+ * @throws {Error} If the input string is not in a valid RGB format.
+ */
 export function rgbStringToRgbaColor(rgbString: RgbString): RgbaColor {
   const matches = rgbString.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
   if (!matches) {
@@ -34,6 +54,20 @@ export function rgbStringToRgbaColor(rgbString: RgbString): RgbaColor {
   return { r, g, b, a: 1 };
 }
 
+
+/**
+ * Converts an RGBA color string to an RGBA color object.
+ *
+ * The input string should be in the format `rgba(r, g, b, a)`, where `r`, `g`, and `b` 
+ * are integers representing the red, green, and blue components of the color, 
+ * respectively, and `a` is a floating-point number in the range 0.0-1.0 
+ * representing the alpha (transparency) component of the color.
+ *
+ * @param {RgbaString} rgbaString - The RGBA color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ * 
+ * @throws {Error} If the input string is not in a valid RGBA format.
+ */
 export function rgbaStringToRgbaColor(rgbaString: RgbaString): RgbaColor {
   const matches = rgbaString.match(
     /rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/
@@ -44,8 +78,21 @@ export function rgbaStringToRgbaColor(rgbaString: RgbaString): RgbaColor {
   const [, r, g, b, a] = matches.map(Number);
   return { r, g, b, a };
 }
+
+/**
+ * Converts an HSL color string to an RGBA color object.
+ *
+ * The input string should be in the format `hsl(h, s%, l%)`, where `h`, `s`, and `l` 
+ * are integers representing the hue, saturation percentage, and lightness 
+ * percentage of the color, respectively.
+ *
+ * @param {HslString} hslString - The HSL color string to convert.
+ * @returns {RgbaColor} The RGBA color object with `a` set to 1.
+ * 
+ * @throws {Error} If the input string is not in a valid HSL format.
+ */
 export function hslStringToRgbaColor(hslString: HslString): RgbaColor {
-  const matches = hslString.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+  const matches = hslString.match(/hsl\((\d+)\s*(\d+)%\s*(\d+)%\)/);
   if (!matches) {
     throw new Error("Invalid HSL color format");
   }
@@ -79,9 +126,22 @@ export function hslStringToRgbaColor(hslString: HslString): RgbaColor {
   return { r, g, b, a: 1 };
 }
 
+/**
+ * Converts an HSLA color string to an RGBA color object.
+ *
+ * The input string should be in the format `hsla(h, s%, l%, a)`, where `h`, `s`, 
+ * and `l` are integers representing the hue, saturation percentage, and lightness 
+ * percentage of the color, respectively, and `a` is a floating-point number 
+ * representing the alpha (transparency) component of the color.
+ *
+ * @param {HslaString} hslaString - The HSLA color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ * 
+ * @throws {Error} If the input string is not in a valid HSLA format.
+ */
 export function hslaStringToRgbaColor(hslaString: HslaString): RgbaColor {
   const matches = hslaString.match(
-    /hsla\((\d+),\s*(\d+)%,\s*(\d+)%,\s*([\d.]+)\)/
+    /hsla\((\d+)\s*(\d+)%\s*(\d+)%\s*([\d.]+)\)/
   );
   if (!matches) {
     throw new Error("Invalid HSLA color format");
@@ -116,8 +176,20 @@ export function hslaStringToRgbaColor(hslaString: HslaString): RgbaColor {
   return { r, g, b, a };
 }
 
+/**
+ * Converts an HWB color string to an RGBA color object.
+ *
+ * The input string should be in the format `hwb(h, w%, b%)`, where `h` is an
+ * integer representing the hue of the color, and `w` and `b` are percentages
+ * representing the whiteness and blackness of the color, respectively.
+ *
+ * @param {HwbString} hwbString - The HWB color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ *
+ * @throws {Error} If the input string is not in a valid HWB format.
+ */
 export function hwbStringToRgbaColor(hwbString: HwbString): RgbaColor {
-  const matches = hwbString.match(/hwb\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+  const matches = hwbString.match(/hwb\((\d+)\s*(\d+)%\s*(\d+)%\)/);
   if (!matches) {
     throw new Error("Invalid HWB color format");
   }
@@ -132,9 +204,22 @@ export function hwbStringToRgbaColor(hwbString: HwbString): RgbaColor {
   return hslStringToRgbaColor(hsl as HslString);
 }
 
+/**
+ * Converts an LCH color string to an RGBA color object.
+ *
+ * The input string should be in the format `lch(l, c, h)`, where `l` is a
+ * number representing the lightness of the color, `c` is a number representing
+ * the chroma of the color, and `h` is a number representing the hue of the
+ * color.
+ *
+ * @param {LchString} lchString - The LCH color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ *
+ * @throws {Error} If the input string is not in a valid LCH format.
+ */
 export function lchStringToRgbaColor(lchString: LchString): RgbaColor {
   const [l, c, h] = lchString
-    .match(/lch\((\d+),\s*(\d+),\s*(\d+)\)/)!
+    .match(/lch\((\d+)\s*(\d+)\s*(\d+)\)/)!
     .slice(1)
     .map(Number);
 
@@ -147,9 +232,22 @@ export function lchStringToRgbaColor(lchString: LchString): RgbaColor {
   return labStringToRgbaColor(lab as LabString);
 }
 
+/**
+ * Converts an OKLCH color string to an RGBA color object.
+ *
+ * The input string should be in the format `oklch(l, c, h)`, where `l` is a
+ * number representing the lightness of the color, `c` is a number representing
+ * the chroma of the color, and `h` is a number representing the hue of the
+ * color.
+ *
+ * @param {OklchString} oklchString - The OKLCH color string to convert.
+ * @returns {RgbaColor} The RGBA color object.
+ *
+ * @throws {Error} If the input string is not in a valid OKLCH format.
+ */
 export function oklchStringToRgbaColor(oklchString: OklchString): RgbaColor {
   const [l, c, h] = oklchString
-    .match(/oklch\((\d+),\s*(\d+),\s*(\d+)\)/)!
+    .match(/oklch\((\d+)\s*(\d+)\s*(\d+)\)/)!
     .slice(1)
     .map(Number);
 
@@ -164,7 +262,7 @@ export function oklchStringToRgbaColor(oklchString: OklchString): RgbaColor {
 
 export function labStringToRgbaColor(labString: LabString): RgbaColor {
   const [l, a, b] = labString
-    .match(/lab\((\d+),\s*(\d+),\s*(\d+)\)/)!
+    .match(/lab\((\d+)\s*(\d+)\s*(\d+)\)/)!
     .slice(1)
     .map(Number);
 
@@ -196,7 +294,7 @@ export function labStringToRgbaColor(labString: LabString): RgbaColor {
 
 export function oklabStringToRgbaColor(oklabString: OklabString): RgbaColor {
   const [l, a, b] = oklabString
-    .match(/oklab\((\d+),\s*(\d+),\s*(\d+)\)/)!
+    .match(/oklab\((\d+)\s*(\d+)\s*(\d+)\)/)!
     .slice(1)
     .map(Number);
 
@@ -219,6 +317,112 @@ export function oklabStringToRgbaColor(oklabString: OklabString): RgbaColor {
     a: 1,
   };
 }
+
+export function hexColorToHexString(hexColor: HexColor): HexColor {
+  return rgbaToHex(hexToRgba(hexColor));
+}
+
+export function hexColorToRgbString(hexColor: HexColor): RgbString {
+  const hex = hexColor.replace("#", "");
+
+  let r, g, b;
+  if (hex.length === 3 || hex.length === 4) {
+    r = parseInt(hex[0] + hex[0], 16);
+    g = parseInt(hex[1] + hex[1], 16);
+    b = parseInt(hex[2] + hex[2], 16);
+  } else if (hex.length === 6 || hex.length === 8) {
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+  }
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+export function hexColorToRgbaString(hexColor: HexColor): RgbaString {
+  const hex = hexColor.replace("#", "");
+
+  let r,
+    g,
+    b,
+    a = 1;
+  if (hex.length === 4) {
+    r = parseInt(hex[0] + hex[0], 16);
+    g = parseInt(hex[1] + hex[1], 16);
+    b = parseInt(hex[2] + hex[2], 16);
+    a = parseInt(hex[3] + hex[3], 16) / 255;
+  } else if (hex.length === 8) {
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+    a = parseInt(hex.substring(6, 8), 16) / 255;
+  } else if (hex.length === 3) {
+    r = parseInt(hex[0] + hex[0], 16);
+    g = parseInt(hex[1] + hex[1], 16);
+    b = parseInt(hex[2] + hex[2], 16);
+  } else if (hex.length === 6) {
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+  } else {
+    throw new Error(
+      "Invalid hex color format. Use #RGB, #RGBA, #RRGGBB, or #RRGGBBAA."
+    );
+  }
+
+  return `rgba(${r}, ${g}, ${b}, ${parseFloat(a.toFixed(2))})`;
+}
+
+export function hexColorToHslString(hexColor: HexColor): HslString {
+  const rgb = hexToRgb(hexColor);
+  const hsl = rgbToHsl(rgb);
+  return `hsl(${parseFloat(hsl.h.toFixed(0))} ${parseFloat(hsl.s.toFixed(2))} ${
+    parseFloat(hsl.l.toFixed(2))})`;
+}
+
+export function hexColorToHslaString(hexColor: HexColor): HslaString {
+  const rgba = hexToRgba(hexColor);
+  const hsla = rgbToHsla(rgba, rgba.a);
+  return `hsl(${parseFloat(hsla.h.toFixed(0))} ${parseFloat(hsla.s.toFixed(2))} ${parseFloat(hsla.l.toFixed(2))} / ${parseFloat(hsla.a.toFixed(2))})`;
+}
+
+export function hexColorToHwbString(hexColor: HexColor): HwbString {
+  const rgba = hexToRgba(hexColor);
+  const hwb = rgbaToHwb(rgba);
+  return `hwb(${parseFloat(hwb.h.toFixed(2))} ${parseFloat(hwb.w.toFixed(2))} ${parseFloat(hwb.b.toFixed(2))} / ${parseFloat(rgba.a.toFixed(2))})`;
+}
+
+export function hexColorToLchString(hexColor: HexColor): LchString {
+  const rgba = hexToRgba(hexColor);
+  const lch = rgbToLch(rgba);
+  return `lch(${parseFloat(lch.l.toFixed(2))} ${parseFloat(lch.c.toFixed(2))} ${parseFloat(lch.h.toFixed(2))} / ${parseFloat(rgba.a.toFixed(2))})`;
+}
+
+
+export function hexColorToOklchString(hexColor: HexColor): OklchString {
+  const rgba = hexToRgba(hexColor);
+  const lch = rgbToOklch(rgba);
+  return `oklch(${parseFloat(lch.l.toFixed(2))} ${parseFloat(lch.c.toFixed(2))} ${parseFloat(lch.h.toFixed(2))} / ${parseFloat(rgba.a.toFixed(2))})`;
+}
+
+export function hexColorToLabString(hexColor: HexColor): LabString {
+  const rgba = hexToRgba(hexColor);
+  const lab = rgbToLab(rgba);
+  return `lab(${parseFloat(lab.l.toFixed(2))} ${parseFloat(lab.a.toFixed(2))} ${parseFloat(lab.b.toFixed(2))} / ${parseFloat(rgba.a.toFixed(2))})`;
+}
+
+/**
+ * Converts a hex color to an OKLAB color string.
+ *
+ * @param hexColor - The hex color value to convert, in the form of a string.
+ * @returns The OKLAB color string representation of the input hex color.
+ */
+export function hexColorToOklabString(hexColor: HexColor): OklabString {
+  const rgba = hexToRgba(hexColor);
+  const lab = rgbToOklab(rgba);
+  return `oklab(${parseFloat(lab.l.toFixed(2))} ${parseFloat(lab.a.toFixed(2))} ${parseFloat(lab.b.toFixed(2))} / ${parseFloat(rgba.a.toFixed(2))})`;
+}
+
 
 // Преобразование цвета в оттенок серого
 export function rgbToGray(color: RgbaColor): number {
@@ -342,9 +546,11 @@ export function rgbaToHsla(rgba: RgbaColor): HslaColor {
 
 // Конвертация RGBA в HEX
 export function rgbaToHex(rgba: RgbaColor): HexColor {
-  const { r, g, b } = rgba;
-  const rgb = { r, g, b };
-  return rgbToHex(rgb);
+  const { r, g, b, a } = rgba;
+  
+  const toHex = (value: number) => value.toString(16).padStart(2, '0');
+  const alphaHex = Math.round(a * 255).toString(16).padStart(2, '0');
+  return `#${toHex(r).toUpperCase()}${toHex(g).toUpperCase()}${toHex(b).toUpperCase()}${alphaHex.toUpperCase()}`;
 }
 
 // Конвертация RGBA в HWB
@@ -385,7 +591,13 @@ export function rgbaToOklab(rgba: RgbaColor): OklabColor {
 }
 
 export function hslToRgb(hsl: HslColor): RgbColor {
-  const { h, s, l } = hsl;
+  let { h, s, l } = hsl;
+
+  // Normalize hue to the range [0, 360)
+  if (h > 360) {
+    h %= 360;
+  }
+
   const sNorm = s / 100;
   const lNorm = l / 100;
   const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
@@ -413,6 +625,7 @@ export function hslToRgb(hsl: HslColor): RgbColor {
     b: Math.round((b + m) * 255)
   };
 }
+
 
 // Конвертация HSL в RGBA
 export function hslToRgba(hsl: HslColor, alpha: number = 1): RgbaColor {
@@ -486,8 +699,8 @@ export function hslaToHsl(hsla: HslaColor): HslColor {
 
 // Конвертация HSLA в HEX
 export function hslaToHex(hsla: HslaColor): HexColor {
-  const rgb = hslaToRgb(hsla);
-  return rgbToHex(rgb);
+  const rgb = hslaToRgba(hsla);
+  return rgbaToHex(rgb);
 }
 
 // Конвертация HSLA в HWB
@@ -736,9 +949,9 @@ export function hexToHsl(hex: HexColor): HslColor {
 }
 
 // Конвертация HEX в HSLA
-export function hexToHsla(hex: HexColor, alpha: number = 1): HslaColor {
-  const rgb = hexToRgb(hex);
-  return rgbToHsla(rgb, alpha);
+export function hexToHsla(hex: HexColor): HslaColor {
+  const rgba = hexToRgba(hex);
+  return rgbaToHsla(rgba);
 }
 
 // Конвертация HEX в HWB
@@ -980,4 +1193,57 @@ export function labToHwb(lab: LabColor): HwbColor {
 export function labToOklch(lab: LabColor): OklchColor {
   const oklab = labToOklab(lab);
   return oklabToOklch(oklab);
+}
+
+/**
+ * Расчёт цвета HSL на основании x и y на прямоугольной плоскости градиентов
+ *
+ * @param {number} h Оттенок цвета должен находиться в диапазоне от 0 до 360.
+ * @param {number} x Координата x на прямоугольной плоскости градиентов, должна быть в диапазоне от 0 до 100.
+ * @param {number} y Координата y на прямоугольной плоскости градиентов, должна быть в диапазоне от 0 до 100.
+ * @return {HslColor} Рассчитанный цвет HSL.
+ */
+export function calculateHSLColor(h: number, x: number, y: number): HslColor {
+  // 1. Рассчитать Lightness (L)
+  const L = 1 - y;
+
+  // 2. Рассчитать Saturation (S)
+  let S: number;
+  if (L === 0 || L === 1) {
+    S = 0; // В крайних случаях насыщенность равна 0
+  } else {
+    S = x / Math.min(L, 1 - L);
+  }
+
+  // 3. Преобразовать S и L в проценты
+  return {
+    h: Math.round(h), // Hue остается неизменным
+    s: Math.min(100, Math.max(0, Math.round(S * 100))), // Saturation от 0 до 100
+    l: Math.min(100, Math.max(0, Math.round(L * 100))), // Lightness от 0 до 100
+  };
+}
+
+// Обратная функция calculateHSLColor, получаем координаты x и y на прямоугольной плоскости градиентов
+export function getCoordinatesFromHSLColor(hsl: HslColor): {
+  x: number;
+  y: number;
+} {
+  const { h, s, l } = hsl;
+
+  // Преобразуем s и l из процентов в доли
+  const S_L = s / 100;
+  const L = l / 100;
+
+  // Шаг 1: Преобразование HSL в HSV
+  const V = L + S_L * Math.min(L, 1 - L);
+  const S_V = V === 0 ? 0 : 2 * (1 - L / V);
+
+  // Шаг 2: Определение координат x и y
+  const x = S_V * 100;
+  const y = (1 - V) * 100;
+
+  return {
+    x: x / 100,
+    y: y / 100,
+  };
 }

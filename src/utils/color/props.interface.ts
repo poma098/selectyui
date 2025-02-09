@@ -8,27 +8,86 @@ export type RgbaString =
   | `rgba(${number}, ${number}, ${number}, ${number})`
   | `rgba(${number},${number},${number},${number})`;
 export type HslString =
-  | `hsl(${number}, ${number}%, ${number}%)`
-  | `hsl(${number},${number}%,${number}%)`;
+  | `hsl(${number} ${number}% ${number}%)`
+  | `hsl(${number} ${number} ${number}%)`
+  | `hsl(${number} ${number}% ${number})`
+  | `hsl(${number} ${number} ${number})`
+  | `hsl(${number}deg ${number}% ${number}%)`
+  | `hsl(${number}deg ${number} ${number}%)`
+  | `hsl(${number}deg ${number}% ${number})`
+  | `hsl(${number}deg ${number} ${number})`
+  | `hsl(${number} ${number}% ${number}% / ${number})`
+  | `hsl(${number} ${number} ${number}% / ${number})`
+  | `hsl(${number} ${number}% ${number} / ${number})`
+  | `hsl(${number} ${number} ${number} / ${number})`
+  | `hsl(${number}deg ${number}% ${number}% / ${number})`
+  | `hsl(${number}deg ${number} ${number}% / ${number})`
+  | `hsl(${number}deg ${number}% ${number} / ${number})`
+  | `hsl(${number}deg ${number} ${number} / ${number})`;
+
 export type HslaString =
-  | `hsla(${number}, ${number}%, ${number}%, ${number})`
-  | `hsla(${number},${number}%,${number}%,${number})`;
+  | `hsl(${number} ${number}% ${number}%)`
+  | `hsl(${number} ${number} ${number}%)`
+  | `hsl(${number} ${number}% ${number})`
+  | `hsl(${number} ${number} ${number})`
+  | `hsl(${number}deg ${number}% ${number}%)`
+  | `hsl(${number}deg ${number} ${number}%)`
+  | `hsl(${number}deg ${number}% ${number})`
+  | `hsl(${number}deg ${number} ${number})`
+  | `hsl(${number} ${number}% ${number}% / ${number})`
+  | `hsl(${number} ${number} ${number}% / ${number})`
+  | `hsl(${number} ${number}% ${number} / ${number})`
+  | `hsl(${number} ${number} ${number} / ${number})`
+  | `hsl(${number}deg ${number}% ${number}% / ${number})`
+  | `hsl(${number}deg ${number} ${number}% / ${number})`
+  | `hsl(${number}deg ${number}% ${number} / ${number})`
+  | `hsl(${number}deg ${number} ${number} / ${number})`;
 
 export type HwbString =
-  | `hwb(${number}, ${number}%, ${number}%)`
-  | `hwb(${number},${number}%,${number}%)`;
+  | `hwb(${number} ${number}% ${number}%)`
+  | `hwb(${number} ${number} ${number}%)`
+  | `hwb(${number} ${number}% ${number})`
+  | `hwb(${number} ${number} ${number})`
+  | `hwb(${number} ${number}% ${number}% / ${number})`
+  | `hwb(${number} ${number} ${number}% / ${number})`
+  | `hwb(${number} ${number}% ${number} / ${number})`
+  | `hwb(${number} ${number} ${number} / ${number})`
+  | `hwb(${number} ${number}% ${number}% / ${number}%)`
+  | `hwb(${number} ${number} ${number}% / ${number}%)`
+  | `hwb(${number} ${number}% ${number} / ${number}%)`
+  | `hwb(${number} ${number} ${number} / ${number}%)`
+  | `hwb(${number}deg ${number}% ${number}%)`
+  | `hwb(${number}deg ${number} ${number}%)`
+  | `hwb(${number}deg ${number}% ${number})`
+  | `hwb(${number}deg ${number} ${number})`
+  | `hwb(${number}deg ${number}% ${number}% / ${number})`
+  | `hwb(${number}deg ${number} ${number}% / ${number})`
+  | `hwb(${number}deg ${number}% ${number} / ${number})`
+  | `hwb(${number}deg ${number} ${number} / ${number})`
+  | `hwb(${number}deg ${number}% ${number}% / ${number}%)`
+  | `hwb(${number}deg ${number} ${number}% / ${number}%)`
+  | `hwb(${number}deg ${number}% ${number} / ${number}%)`
+  | `hwb(${number}deg ${number} ${number} / ${number}%)`
+
 export type LchString =
-  | `lch(${number}, ${number}, ${number})`
-  | `lch(${number},${number},${number})`;
+  | `lch(${number} ${number} ${number})`
+  | `lch(${number} ${number} ${number} / ${number})`
+  | `lch(${number} ${number} ${number} / ${number}%)`;
+
 export type OklchString =
-  | `oklch(${number}, ${number}, ${number})`
-  | `oklch(${number},${number},${number})`;
+  | `oklch(${number} ${number} ${number})`
+  | `oklch(${number} ${number} ${number} / ${number})`
+  | `oklch(${number} ${number} ${number} / ${number}%)`;
+
 export type LabString =
-  | `lab(${number}, ${number}, ${number})`
-  | `lab(${number},${number},${number})`;
+  | `lab(${number} ${number} ${number})`
+  | `lab(${number} ${number} ${number} / ${number})`
+  | `lab(${number} ${number} ${number} / ${number}%)`;
+
 export type OklabString =
-  | `oklab(${number}, ${number}, ${number})`
-  | `oklab(${number},${number},${number})`;
+  | `oklab(${number} ${number} ${number})`
+  | `oklab(${number} ${number} ${number} / ${number})`
+  | `oklab(${number} ${number} ${number} / ${number}%)`;
 
 // Объекты цветов
 export interface RgbColor {

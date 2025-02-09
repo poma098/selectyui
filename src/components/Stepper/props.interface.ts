@@ -16,12 +16,17 @@ export interface PropsStepper {
   bar?: boolean;
   barStyle?: React.CSSProperties;
   barClassName?: string;
+  buttonStyle?: React.CSSProperties;
+  buttonClassName?: string;
   formatter?: (value: number) => string;
   enableScalingWithAltShift?: boolean;
   description?:
     | string
     | React.ReactNode
-    | ((value: number, unit?: string | React.ReactNode) => string | React.ReactNode);
+    | ((
+        value: number,
+        unit?: string | React.ReactNode
+      ) => string | React.ReactNode);
   radius?: number;
 }
 

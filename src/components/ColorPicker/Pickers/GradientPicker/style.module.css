@@ -1,0 +1,73 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1px;
+  outline: none;
+  user-select: none;
+}
+.stoppers {
+  height: 20px;
+  width: 100%;
+}
+.opacityBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+}
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+  transform: translate(0px, calc(100% - 1px));
+}
+.angleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 2px);
+  margin-top: 8px;
+  gap: 10px;
+}
+.angleText {
+  
+}
+.angleTitle {
+  font-weight: 700;
+  font-size: 15px;
+}
+.angleDescription {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6ch;
+  opacity: 0.75;
+}
+.angle {
+  flex-shrink: 0;
+}

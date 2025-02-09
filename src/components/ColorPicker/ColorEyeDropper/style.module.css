@@ -1,0 +1,14 @@
+.container {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 6px;
+}
+.container[data-is-active="true"] {
+  color: #2f86e8;
+}
+.container:disabled {
+  opacity: 0.5;
+}

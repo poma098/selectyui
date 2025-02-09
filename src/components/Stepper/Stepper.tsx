@@ -63,6 +63,8 @@ function Stepper({
   enableScalingWithAltShift = true,
   barStyle,
   barClassName,
+  buttonStyle,
+  buttonClassName,
 }: PropsStepper) {
   const inputRef = useRef<HTMLDivElement | null>(null);
   const width = Math.min(Math.max(((value - min) / (max - min)) * 100, 0), 100);
@@ -173,11 +175,12 @@ function Stepper({
           <motion.button
             whileHover={{ scale: 1, opacity: 1, backgroundColor: "#767c9614" }}
             whileTap={{ scale: 0.9, opacity: 1, backgroundColor: "#767c9625" }}
-            className={Style.button}
+            className={cn(Style.button, buttonClassName)}
             onClick={handleMinus}
             disabled={value <= min || !onChange || disabled}
             style={{
               borderRadius: RADIUS.button,
+              ...buttonStyle,
             }}
           >
             <LuMinus />
@@ -236,11 +239,12 @@ function Stepper({
           <motion.button
             whileHover={{ scale: 1, opacity: 1, backgroundColor: "#767c9614" }}
             whileTap={{ scale: 0.9, opacity: 1, backgroundColor: "#767c9625" }}
-            className={Style.button}
+            className={cn(Style.button, buttonClassName)}
             onClick={handlePlus}
             disabled={value >= max || !onChange || disabled}
             style={{
               borderRadius: RADIUS.button,
+              ...buttonStyle,
             }}
           >
             <LuPlus />

@@ -29,3 +29,4 @@ export * from "./components/Stepper";
 export * from "./components/AmplitudeGraph";
 export * from "./components/RadialBlur";
 export * from "./components/RadialToolKit";
+export * from "./components/ColorPicker";

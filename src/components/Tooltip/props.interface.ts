@@ -19,6 +19,7 @@ export interface TooltipPropsBase {
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: (event: React.MouseEvent) => void;
   delay?: number;
+  padding: React.CSSProperties["padding"];
 }
 
 export interface TooltipPropsTitle extends TooltipPropsBase {

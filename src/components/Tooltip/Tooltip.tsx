@@ -29,6 +29,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       triangeVisible = true,
       onMouseEnter,
       onMouseLeave,
+      padding,
       delay = 300, // TODO: Добавить задержку наведения курсора на наблюдаемый элемент
     }: TooltipProps,
     ref
@@ -349,7 +350,9 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             onMouseLeave={onMouseLeave}
           >
             {!children && (
-              <div className={Style.container}>
+              <div className={Style.container} style={{
+                padding
+              }}>
                 <div className={Style.content}>
                   {(icon || title) && (
                     <div className={Style.header}>
